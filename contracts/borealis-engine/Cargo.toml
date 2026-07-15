@@ -1,0 +1,23 @@
+[package]
+name = "borealis-engine"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+soroban-sdk = "20.4.0"
+soroban-contract = "20.4.0"
+
+[dev-dependencies]
+soroban-sdk = { version = "20.4.0", features = ["testutils", "fixup-stellar-asset-contract"] }
+
+[[test]]
+name = "integration"
+path = "tests/integration.rs"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
